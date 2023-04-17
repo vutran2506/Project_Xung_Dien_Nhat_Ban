@@ -1,0 +1,90 @@
+<header class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top" style="background: #5058c7 !important;">
+  <div class="container-fluid mx-4">
+    <div class="logo d-flex flex-row text-center align-items-center">
+      <a [routerLink]="['homepage']" class="p-0"><img src="https://slg-gh.com.vn/data/logo/80cmx120cm1-01.png"
+                                                      alt="" width="105" height="44"
+                                                      class="img-fluid"></a>
+      <a  style="padding: 0">
+        <h5 class="mx-2 logo-name" style="padding: 0; text-align: center; color:white"> Tập Đoàn SLG Việt
+          Nam</h5></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <nav class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li ><a class="nav-link" [routerLink]="['employee']"><span
+          class="n-item">Nhân viên</span></a></li>
+        <li ><a class="nav-link" [routerLink]="['customer']"><span class="n-item">Khách hàng</span></a>
+        </li>
+        <li >
+          <div class="dropdownUser">
+            <span class="n-item" style="padding: 8px">Sản phẩm</span>
+
+          </div>
+        </li>
+        <li ><a class="nav-link"
+                                                             [routerLink]="['statistic/statistical']"><span
+          class="n-item">Thống kê</span></a></li>
+        <li ><a class="nav-link" [routerLink]="['location']"><span
+          class="n-item">Giỏ hàng</span></a></li>
+
+
+        <li >
+          <div class="dropdownUser">
+            <div class="n-item d-flex align-items-center">
+              <i class="bi bi-person-lines-fill mx-2"></i>
+              <span style="color: #eb5d1e"><b>Trần Ngọc Vũ</b></span></div>
+            <div class="dropdown-content p-0">
+              <div class=" getstarted" routerLink="/security/change-password">
+                <button class="btn">Đổi mật khẩu</button>
+              </div>
+              <div class=" getstarted" >
+                <button class="btn">Đăng xuất</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><!-- End Header -->
+
+<div class="articles">
+  <!--        carousel-->
+  <div class="carousel">
+    <div class="slide">
+      <section id="carousel">
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+          <!-- The slideshow/carousel -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://slg-gh.com.vn/data/banner/slider-sni-2.jpg" class="d-block w-100">
+              <div class="carousel-caption">
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img src="https://slg-gh.com.vn/data/banner/slider-sni-3.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+              <img src="https://slg-gh.com.vn/data/banner/slider-sni-1.jpg" class="d-block w-100">
+            </div>
+          </div>
+
+          <!-- Left and right controls/icons -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <span class="readmore"> Sản phẩm mới </span>
+  <hr>
+</div>
