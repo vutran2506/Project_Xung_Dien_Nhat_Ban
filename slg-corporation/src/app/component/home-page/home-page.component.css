@@ -1,0 +1,192 @@
+/*----  Main Style  ----*/
+#cards_landscape_wrap-2 {
+  text-align: center;
+  background: whitesmoke;
+}
+#cards_landscape_wrap-2 .container {
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+#cards_landscape_wrap-2 a {
+  text-decoration: none;
+  outline: none;
+}
+#cards_landscape_wrap-2 .card-flyer {
+  border-radius: 12px;
+}
+#cards_landscape_wrap-2 .card-flyer .image-box {
+  background:whitesmoke;
+  overflow: hidden;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
+#cards_landscape_wrap-2 .card-flyer .image-box img {
+  -webkit-transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  -ms-transition: all 0.9s ease;
+  width: 100%;
+  height: 400px;
+}
+#cards_landscape_wrap-2 .card-flyer:hover .image-box img {
+  opacity: 0.7;
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+  transform: scale(1.15);
+}
+
+#cards_landscape_wrap-2 .card-flyer .text-box {
+  text-align: center;
+}
+#cards_landscape_wrap-2 .card-flyer .text-box .text-container {
+  padding: 30px 18px;
+}
+#cards_landscape_wrap-2 .card-flyer {
+  background:whitesmoke;
+  margin-top: 50px;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4);
+}
+#cards_landscape_wrap-2 .card-flyer:hover {
+  background: whitesmoke;
+  box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin-top: 50px;
+}
+#cards_landscape_wrap-2 .card-flyer .text-box p {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+#cards_landscape_wrap-2 .card-flyer .text-box h6 {
+  margin-top: 0px;
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Roboto Black", sans-serif;
+  letter-spacing: 1px;
+  color: #00acc1;
+}
+
+/*
+hr
+*/
+.readmore
+{
+  font-size: 50px;
+  position: relative;
+  top: 30px;
+  font-family: Lato;
+  color: #5058c7;
+  font-style: italic;
+}
+hr
+{
+  color: #5058c7;
+  width: 40%; /* hoặc kích thước tùy ý */
+  position: relative;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+span,h1{
+  font-weight: bold;
+}
+
+main {
+  padding-top: 2%;
+  text-align: center;
+  background: whitesmoke;
+}
+
+#card-wrapper {
+  padding: 1% 9%;
+  display: inline-flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-detail {
+  margin: 0px 20px;
+}
+
+.card-image,
+img {
+  width: 100%;
+  height: 20rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+}
+
+span {
+  color: blue;
+  margin: 10px 6px;
+}
+
+.card {
+  cursor: pointer;
+  display: table-column-group;
+  margin: 10px;
+  box-shadow: 1px 1px 10px #b0cde9;
+  background-color: #fefefe;
+  width: 350px;
+  border: 1px solid #56bef0;
+  border-radius: 15px;
+  height: 400px;
+
+}
+.card:hover {
+  box-shadow: 2px 2px 20px #b0cde9; /* Thay đổi độ đổ bóng */
+  transform: translateY(-5px); /* Di chuyển thẻ lên */
+  transition: all 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
+}
+
+/* button
+*/
+.btn-effect {
+  border: 2px solid #5058c7; /* Màu viền ban đầu */
+  background-color: transparent; /* Màu nền trong suốt */
+  color: #5058c7; /* Màu chữ ban đầu */
+  padding: 10px 20px; /* Kích thước button */
+  transition: all 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
+  border-radius: 12px;
+
+}
+
+.btn-effect:hover {
+  background-color: #5058c7;
+color: #fff;
+transform: scale(1.05);
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  font-family: "Helvetica Neue", sans-serif;
+
+}
+
+h6{
+  font-size: 22px;
+  color: orange;
+  margin-bottom: 2%;
+}
+.element {
+  background-color: rgba(255, 255, 255, 0.5);
+}

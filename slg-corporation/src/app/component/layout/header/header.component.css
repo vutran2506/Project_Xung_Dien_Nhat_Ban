@@ -1,38 +1,9 @@
-body{
-  background-color: #FAFAFA;
-  margin: 0;
 
-}
-/* This is the styles for the menu bar */
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  color: #ef7f4d;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.font-primary {
-  font-family: "Raleway", sans-serif;
-}
-
-
-a {
-  text-decoration: none;
-}
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 header {
-  height: 4.2rem;
+  height: 6.2rem;
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
@@ -72,7 +43,7 @@ header .logo img:hover {
 header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 90px;
   object-fit: contain;
 }
 
@@ -87,7 +58,7 @@ header .logo img {
 
 .navbar {
   padding: 0;
-  background: #5058c7;
+  background: rgba(80, 88, 199, 0.5);
 }
 
 .navbar ul {
@@ -98,12 +69,13 @@ header .logo img {
   align-items: center;
 }
 
-.nabar li {
+.navbar li {
   position: relative;
+  margin-right: 15px;
 }
 nav ul li .n-item{
   color: #727171;
-  font-size: 18px;
+  font-size: 22px;
   /*font-weight: bold;*/
 }
 
@@ -113,16 +85,18 @@ nav ul li  .n-item:hover{
 
 nav ul li  .n-item{
   font-size: large;
-  color: white;
+  color: blue;
 
 }
-.navbar .getstarted,
-.navbar .getstarted:focus{
+nav ul li i{
+  font-size: 40px;
+  color: blue;
+
 }
 
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover{
-  color: #fff;
+  color: blue;
   background: #ee7843;
 }
 
@@ -302,24 +276,7 @@ nav .n-item:hover {
 {
   text-align: center;
 }
-.readmore
-{
-  font-size: 50px;
-  position: relative;
-  top: 30px;
-  font-family: Lato;
-  color: #5058c7;
-  font-style: italic;
-}
-hr
-{
-  color: #5058c7;
-  width: 40%; /* hoặc kích thước tùy ý */
-  position: relative;
-  top: 30px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 /*This is the style for the article grid*/
 .grid
 {
@@ -521,80 +478,154 @@ h5 .card-title
 /*--------------------------------------------------------------
 # Section
 --------------------------------------------------------------*/
-section {
-  /*padding: 60px 0;*/
-  overflow: hidden;
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(1, 1);
+  }
+  to {
+    -webkit-transform: scale(1.5, 1.5);
+  }
 }
 
-.section-bg {
-  background-color: #fef8f5;
+@keyframes zoom {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(1.5, 1.5);
+  }
 }
 
-.section-title {
-  text-align: center;
-  padding-bottom: 30px;
+.carousel-inner .item > img {
+  -webkit-animation: zoom 20s;
+  animation: zoom 20s;
 }
 
 
-.section-title p {
-  margin-bottom: 0;
-  position: relative;
-  font-size: 30px;
-  font-weight: 700;
-  color: #4e4039;
-}
 
-.section-title p::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: #eb5d1e;
-  bottom: 0;
-  left: calc(50% - 30px);
-}
 
-.getstarted:hover
-.getstarted:focus:hover{
-  color: #fff;
-  background: #ee7843;
-}
+/*!* Set values + misc *!*/
+/*var promoCode;*/
+/*var promoPrice;*/
+/*var fadeTime = 300;*/
 
-.getstarted {
-  border-color:  #ee7843;
-}
+/*!* Assign actions *!*/
+/*$('.quantity input').change(function() {*/
+/*updateQuantity(this);*/
+/*});*/
 
-.colorCurrentPage {
-  background-color: #b3c444
-}
+/*$('.remove button').click(function() {*/
+/*removeItem(this);*/
+/*});*/
 
-/*
-Nút button*/
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  color: #55acee;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
+/*$(document).ready(function() {*/
+/*updateSumItems();*/
+/*});*/
 
-.button-transparent {
-  background-color: transparent;
-  border: 2px solid #5058c7;
-}
+/*$('.promo-code-cta').click(function() {*/
 
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: #55acee;
-}
+/*  promoCode = $('#promo-code').val();*/
 
-.btn-transparent:hover {
-  background-color: #55acee;
-  color: #55acee;
-}
+/*if (promoCode == '10off' || promoCode == '10OFF') {*/
+/*//If promoPrice has no value, set it as 10 for the 10OFF promocode*/
+/*                                                     if (!promoPrice) {*/
+/*  promoPrice = 10;*/
+/*} else if (promoCode) {*/
+/*  promoPrice = promoPrice * 1;*/
+/*}*/
+/*} else if (promoCode != '') {*/
+/*alert("Invalid Promo Code");*/
+/*  promoPrice = 0;*/
+/*}*/
+/*//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo*/
+/*                                                                                         if (promoPrice) {*/
+/*  $('.summary-promo').removeClass('hide');*/
+/*  $('.promo-value').text(promoPrice.toFixed(2));*/
+/*recalculateCart(true);*/
+/*}*/
+/*});*/
 
+/*!* Recalculate cart *!*/
+/*function recalculateCart(onlyTotal) {*/
+/*  var subtotal = 0;*/
+
+/*!* Sum up row totals *!*/
+/*$('.basket-product').each(function() {*/
+/*  subtotal += parseFloat($(this).children('.subtotal').text());*/
+/*});*/
+
+/*!* Calculate totals *!*/
+/*var total = subtotal;*/
+
+/*//If there is a valid promoCode, and subtotal < 10 subtract from total*/
+/*                                                   var promoPrice = parseFloat($('.promo-value').text());*/
+/*if (promoPrice) {*/
+/*if (subtotal >= 10) {*/
+/*  total -= promoPrice;*/
+/*} else {*/
+/*  alert('Order must be more than £10 for Promo code to apply.');*/
+/*    $('.summary-promo').addClass('hide');*/
+/*  }*/
+/*}*/
+
+/*!*If switch for update only total, update only total display*!*/
+/*if (onlyTotal) {*/
+/*!* Update total display *!*/
+/*$('.total-value').fadeOut(fadeTime, function() {*/
+/*  $('#basket-total').html(total.toFixed(2));*/
+/*  $('.total-value').fadeIn(fadeTime);*/
+/*});*/
+/*} else {*/
+/*!* Update summary display. *!*/
+/*$('.final-value').fadeOut(fadeTime, function() {*/
+/*  $('#basket-subtotal').html(subtotal.toFixed(2));*/
+/*  $('#basket-total').html(total.toFixed(2));*/
+/*if (total == 0) {*/
+/*  $('.checkout-cta').fadeOut(fadeTime);*/
+/*} else {*/
+/*    $('.checkout-cta').fadeIn(fadeTime);*/
+/*  }*/
+/*$('.final-value').fadeIn(fadeTime);*/
+/*});*/
+/*}*/
+/*}*/
+
+/*!* Update quantity *!*/
+/*function updateQuantity(quantityInput) {*/
+/*!* Calculate line price *!*/
+/*  var productRow = $(quantityInput).parent().parent();*/
+/*  var price = parseFloat(productRow.children('.price').text());*/
+/*  var quantity = $(quantityInput).val();*/
+/*  var linePrice = price * quantity;*/
+
+/*!* Update line price display and recalc cart totals *!*/
+/*productRow.children('.subtotal').each(function() {*/
+/*$(this).fadeOut(fadeTime, function() {*/
+/*  $(this).text(linePrice.toFixed(2));*/
+/*recalculateCart();*/
+/*  $(this).fadeIn(fadeTime);*/
+/*});*/
+/*});*/
+
+/*productRow.find('.item-quantity').text(quantity);*/
+/*updateSumItems();*/
+/*}*/
+
+/*function updateSumItems() {*/
+/*  var sumItems = 0;*/
+/*$('.quantity input').each(function() {*/
+/*  sumItems += parseInt($(this).val());*/
+/*});*/
+/*$('.total-items').text(sumItems);*/
+/*}*/
+
+/*!* Remove item from cart *!*/
+/*function removeItem(removeButton) {*/
+/*!* Remove row from DOM and recalc cart total *!*/
+/*  var productRow = $(removeButton).parent().parent();*/
+/*productRow.slideUp(fadeTime, function() {*/
+/*  productRow.remove();*/
+/*recalculateCart();*/
+/*updateSumItems();*/
+/*});*/
+/*}*/
