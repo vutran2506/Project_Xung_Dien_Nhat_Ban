@@ -5,10 +5,10 @@
   font-family: 'Roboto', sans-serif;
 }
 .form_login{
-  margin-top: 5%;
-  margin-bottom:  5%;
-  margin-left:  5%;
-  margin-right: 5%;
+  margin-top: 10%;
+  margin-bottom:  10%;
+  margin-left:  10%;
+  margin-right: 10%;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 section{
@@ -26,7 +26,7 @@ section .img-bg img{
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 112%;
   height: 100%;
   object-fit: cover;
 }
@@ -39,6 +39,7 @@ section .noi-dung{
 }
 section .noi-dung .form{
   width: 50%;
+  margin-left: 12rem;
 }
 section .noi-dung .form h2{
   color: #607d8b;
