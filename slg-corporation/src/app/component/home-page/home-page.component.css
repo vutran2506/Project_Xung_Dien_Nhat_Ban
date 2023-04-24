@@ -42,6 +42,7 @@
 }
 #cards_landscape_wrap-2 .card-flyer .text-box .text-container {
   padding: 30px 18px;
+  align-content: center;
 }
 #cards_landscape_wrap-2 .card-flyer {
   background-color: rgba(255, 255, 255, 0.5);
@@ -94,6 +95,24 @@ hr
   color: #5058c7;
   font-style: italic;
   font-weight: bold; /* Chữ đậm */
+  border: 1px solid;
+  display: inline-block;
+  padding: 0.1% 30%;
+}
+.readmore:hover
+{
+  font-size: 50px;
+  position: relative;
+  top: 4rem;
+  font-family: Lato;
+  color: white;
+  font-style: italic;
+  font-weight: bold; /* Chữ đậm */
+  border: 1px solid;
+  display: inline-block;
+  padding: 0.1% 30%;
+
+  background-color: #95bcd6;
 }
 hr
 
@@ -160,7 +179,7 @@ span {
   padding: 10px 20px; /* Kích thước button */
   transition: all 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
   border-radius: 12px;
-
+  margin-left: 0.4rem;
 }
 
 .btn-effect:hover {
@@ -174,7 +193,7 @@ h1 {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
   padding: 10px;
   font-family: "Helvetica Neue", sans-serif;
-  color: #5058c7;
+  color: blue;
   font-weight: bold;
 }
 

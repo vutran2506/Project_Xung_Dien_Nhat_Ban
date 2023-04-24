@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from "../../service/product.service";
+import {ProductDTO} from "../../model/product-dto";
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  products:ProductDTO[];
+  product: any
+  name:string;
+  origin:number;
+  page = 0;
+  pageSize = 3;
+  pageCount = 0;
+  pageNumbers: number[] = [];
+
+  constructor(
+    private productService:ProductService
+  ) { }
 
   ngOnInit(): void {
+    this.getAllProduct();
   }
-
+  getAllProduct(){
+    this.productService.getAllPageProduct(this.name,this.origin,this.page,this.pageSize).subscribe(items =>{
+      console.log(items)
+      this.product = items;
+      this.products = this.product.content
+    })
+  }
 }

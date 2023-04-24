@@ -7,8 +7,11 @@ import {HeaderComponent} from "./component/layout/header/header.component";
 import {FooterComponent} from "./component/layout/footer/footer.component";
 import {DetailComponent} from "./component/detail/detail.component";
 import {HomePageComponent} from "./component/home-page/home-page.component";
-import { CartComponent } from './component/cart/cart.component';
-import { LoginComponent } from './component/login/login.component';
+import {CartComponent} from './component/cart/cart.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./security-authentication/security-auth/auth.interceptor";
+
 
 @NgModule({
   declarations: [
@@ -17,14 +20,17 @@ import { LoginComponent } from './component/login/login.component';
     FooterComponent,
     DetailComponent,
     HomePageComponent,
-    CartComponent,
-    LoginComponent
+    CartComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  // providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

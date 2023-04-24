@@ -4,6 +4,8 @@
       <a [routerLink]="['homepage']" class="p-0"><img src="https://slg-gh.com.vn/data/logo/80cmx120cm1-01.png"
                                                       alt="" width="125" height="60"
                                                       class="img-fluid"></a>
+      <a [hidden]="isLoggedIn"  style="padding: 0">
+        <h5 class="mx-2 logo-name" style="padding: 0; text-align: center; color: #eb5d1e">Tập đoàn liên kết việt nhật</h5></a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,43 +13,42 @@
     </button>
     <nav class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto" style="margin-right: 70px">
-        <li><a class="nav-link" [routerLink]="['employee']"><span
+        <li [hidden]="!isLoggedIn  || role!=='ROLE_ADMIN'"><a class="nav-link" [routerLink]="['employee']"><span
           class="n-item" style="font-size: 22px">Nhân viên</span></a></li>
-        <li><a class="nav-link" [routerLink]="['customer']"><span class="n-item"
+        <li [hidden]="!isLoggedIn"><a class="nav-link" [routerLink]="['customer']"><span class="n-item"
                                                                   style="font-size: 22px">Khách hàng</span></a>
         </li>
-        <li>
-          <div class="dropdownUser">
-            <span class="n-item" style="padding: 8px ;font-size: 22px" routerLink="/product">Sản phẩm</span>
-          </div>
+        <li [hidden]="!isLoggedIn" >
+          <a class="nav-link" [routerLink]="['product']"><span
+            class="n-item" style="font-size: 22px">Sản phẩm</span></a>
         </li>
-        <li><a class="nav-link"><span class="n-item" style="font-size: 22px">Thống kê</span></a></li>
-        <li>
+        <li [hidden]="!isLoggedIn || role!=='ROLE_ADMIN'"><a class="nav-link"><span class="n-item" style="font-size: 22px">Thống kê</span></a></li>
+        <li [hidden]="!isLoggedIn">
           <a class="nav-link">
             <span class="n-item" style="font-size: 22px">
-            <a ><i class="fa fa-shopping-cart" routerLink="/cart"></i></a></span>
+            <a><i class="fa fa-shopping-cart" routerLink="/cart"></i></a></span>
           </a>
         </li>
-        <li>
+        <li [hidden]="isLoggedIn">
+          <a routerLink="/security/login" style="color: #eb5d1e"><i class="fa fa-sign-in"></i></a>
+        </li>
+        <li [hidden]="!isLoggedIn">
           <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">
               <i class="bi bi-person-lines-fill mx-2"></i>
-              <span style="color: #eb5d1e;font-size: 22px"><i class="fa fa-user-circle" aria-hidden="true" routerLink="/login"></i></span>
+              <span style="color: #eb5d1e;font-size: 22px"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+              <span style="color: #eb5d1e"><b>{{nameUser}}</b></span>
             </div>
             <div class="dropdown-content p-0">
               <div class=" getstarted" routerLink="/security/change-password">
-                <button class="btn" style="font-size: 18px">Đổi mật khẩu</button>
+                <button class="btn" style="font-size: 18px;color: blue">Đổi mật khẩu</button>
               </div>
               <div class=" getstarted">
-                <button class="btn" style="font-size: 18px">Đăng xuất</button>
+                <button class="btn" style="font-size: 18px;color: blue" (click)="logOut()">Đăng xuất</button>
               </div>
             </div>
           </div>
         </li>
-
-
-
-
       </ul>
     </nav>
   </div>

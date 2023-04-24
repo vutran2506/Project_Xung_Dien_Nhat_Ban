@@ -53,6 +53,7 @@ section .noi-dung .form h2{
 }
 section .noi-dung .form .input-form{
   margin-bottom: 20px;
+  color: black;
 }
 section .noi-dung .form .input-form span{
   font-size: 16px;
