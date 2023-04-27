@@ -340,40 +340,37 @@ body {
 /*
 hr
 */
-.readmore
-{
-  font-size: 50px;
-  position: relative;
-  top: 4rem;
-  font-family: Lato;
-  color: #5058c7;
-  font-style: italic;
-  font-weight: bold; /* Chữ đậm */
-  border: 1px solid;
-  display: inline-block;
-  padding: 0.1% 30%;
-}
-.readmore:hover
-{
-  font-size: 50px;
-  position: relative;
-  top: 4rem;
-  font-family: Lato;
-  color: white;
-  font-style: italic;
-  font-weight: bold; /* Chữ đậm */
-  border: 1px solid;
-  display: inline-block;
-  padding: 0.1% 30%;
 
-  background-color: #95bcd6;
-}
-hr
-{
+hr{
   color: #5058c7;
-  width: 40%; /* hoặc kích thước tùy ý */
+  width: 60%; /* hoặc kích thước tùy ý */
   position: relative;
   top: 30px;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.readmore {
+  font-size: 50px;
+  position: relative;
+  top: 4rem;
+  font-family: Lato;
+  color: #5058c7;
+  font-style: italic;
+  font-weight: bold; /* Chữ đậm */
+
+  display: inline-block;
+  padding: 0.1% 30%;
+}
+
+.readmore:hover {
+  font-size: 50px;
+  position: relative;
+  top: 4rem;
+  font-family: Lato;
+  color: black;
+  font-style: italic;
+  font-weight: bold; /* Chữ đậm */
+
+  display: inline-block;
+  padding: 0.1% 30%;
 }

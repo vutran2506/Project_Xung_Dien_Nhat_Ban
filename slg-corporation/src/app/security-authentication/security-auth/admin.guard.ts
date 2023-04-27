@@ -18,7 +18,10 @@ export class AdminGuard implements CanActivate {
         return true;
       } else {
         this.router.navigateByUrl('/error');
+        alert("Không được vào")
         return false;
+
+
       }
     } else {
       this.router.navigateByUrl('/error');

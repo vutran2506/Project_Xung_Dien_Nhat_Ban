@@ -25,7 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    if (this.tokenStorageService.getToken()) {
+      const user = this.tokenStorageService.getUser();
+      this.loginService.isLoggedIn = true;
+      this.roles = this.tokenStorageService.getUser().roles;
+      this.username = this.tokenStorageService.getUser().username;
+    }
     if(this.loginService.isLoggedIn) {
       Swal.fire({
         text: 'Bạn đã đăng nhập.',
@@ -42,12 +47,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('',[Validators.required]),
       rememberMe: new FormControl()
     });
-    if (this.tokenStorageService.getToken()) {
-      const user = this.tokenStorageService.getUser();
-      this.loginService.isLoggedIn = true;
-      this.roles = this.tokenStorageService.getUser().roles;
-      this.username = this.tokenStorageService.getUser().username;
-    }
+
   }
 
 
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loginService.login(this.loginForm.value).subscribe(
       data => {
+        debugger
         if (this.loginForm.value.rememberMe) {
           this.tokenStorageService.saveTokenLocal(data.accessToken);
           this.tokenStorageService.saveUserLocal(data);

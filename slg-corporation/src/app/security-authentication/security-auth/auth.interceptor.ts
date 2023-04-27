@@ -23,6 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authRequest = request;
+    debugger
     const token = this.tokenStorageService.getToken();
 
     if (authRequest.headers.has(InterceptorSkipHeader)) {

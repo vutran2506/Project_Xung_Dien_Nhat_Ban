@@ -11,10 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface IProductRepository extends JpaRepository<Product,Long>{
-    @Query(value = "SELECT p.*,i.image FROM product p join image i on p.id = i.id_product where p.is_deleted = false",nativeQuery = true)
-    Page<IProductDTO> getAllPageProduct(String name, long origin, Pageable pageable);
+public interface
+IProductRepository extends JpaRepository<Product,Long>{
+    @Query(value = "SELECT * FROM product  where is_deleted = false and `name` like :name",nativeQuery = true)
+    Page<Product> getAllPageProduct(String name, Pageable pageable);
 
-    @Query(value = "SELECT p.*,i.image FROM product p join image i on p.id = i.id_product where p.id=:id and p.is_deleted = false",nativeQuery = true)
-    IProductDTO findProductById(long id);
+    @Query(value = "SELECT * FROM product where id=:id and is_deleted = false",nativeQuery = true)
+    Product findProductDTOById(long id);
 }

@@ -11,6 +11,7 @@ import {CartComponent} from './component/cart/cart.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./security-authentication/security-auth/auth.interceptor";
+import { ErrorPageComponent } from './component/error-page/error-page.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {AuthInterceptor} from "./security-authentication/security-auth/auth.inte
     FooterComponent,
     DetailComponent,
     HomePageComponent,
-    CartComponent
+    CartComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

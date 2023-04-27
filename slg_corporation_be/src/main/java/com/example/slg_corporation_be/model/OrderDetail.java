@@ -8,7 +8,9 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int amount;
-    @ManyToOne()
+    private boolean status;
+    private String dayPurchase;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order",referencedColumnName = "id")
     private Orders orders;
     @ManyToOne
@@ -18,11 +20,29 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(long id, int amount, Orders orders, Product product) {
+    public OrderDetail(long id, int amount, boolean status, String dayPurchase, Orders orders, Product product) {
         this.id = id;
         this.amount = amount;
+        this.status = status;
+        this.dayPurchase = dayPurchase;
         this.orders = orders;
         this.product = product;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getDayPurchase() {
+        return dayPurchase;
+    }
+
+    public void setDayPurchase(String dayPurchase) {
+        this.dayPurchase = dayPurchase;
     }
 
     public long getId() {

@@ -25,6 +25,12 @@ export class DetailComponent implements OnInit {
       console.log(item)
       this.product = item;
     })
+   this.view()
   }
-
+  view(): void {
+    const element = document.getElementById('detail');
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
 }

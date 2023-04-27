@@ -10,8 +10,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String codeOrder;
-    private String dayPurchase;
+    private double totalPrice;
     private String methodPay;
 
     @OneToMany(mappedBy = "orders")
@@ -23,15 +22,27 @@ public class Orders {
 
     public Orders() {
     }
-
-    public Orders(long id, String codeOrder, String dayPurchase, String methodPay, Set<OrderDetail> orderDetailSet, AppUser appUser) {
+    public Orders(long id, double totalPrice, String methodPay, Set<OrderDetail> orderDetailSet, AppUser appUser) {
         this.id = id;
-        this.codeOrder = codeOrder;
-        this.dayPurchase = dayPurchase;
+        this.totalPrice = totalPrice;
         this.methodPay = methodPay;
         this.orderDetailSet = orderDetailSet;
         this.appUser = appUser;
     }
+
+    public double getTotalPrice() {
+        double sum =0.0;
+        for (OrderDetail odd: orderDetailSet ){
+            sum += odd.getProduct().getPrice();
+        }
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+
 
     public long getId() {
         return id;
@@ -40,27 +51,10 @@ public class Orders {
     public void setId(long id) {
         this.id = id;
     }
-
-    public String getCodeOrder() {
-        return codeOrder;
-    }
-
-    public void setCodeOrder(String codeOrder) {
-        this.codeOrder = codeOrder;
-    }
-
-    public String getDayPurchase() {
-        return dayPurchase;
-    }
-
-    public void setDayPurchase(String dayPurchase) {
-        this.dayPurchase = dayPurchase;
-    }
-
     public String getMethodPay() {
+
         return methodPay;
     }
-
     public void setMethodPay(String methodPay) {
         this.methodPay = methodPay;
     }

@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     });
-    await this.router.navigateByUrl('/');
+    await this.router.navigateByUrl('');
     location.reload();
   }
 
