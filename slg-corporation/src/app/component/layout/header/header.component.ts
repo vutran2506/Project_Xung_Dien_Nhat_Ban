@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   username: string;
   nameUser:string;
   currentUser: string;
-  nameEmployee: string;
+ emailUser:string;
   role: string;
   isLoggedIn = false;
 
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
       this.currentUser = this.tokenStorageService.getUser().username;
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
+      debugger
     }
     this.isLoggedIn = this.username != null;
     this.getUsernameAccount();
@@ -57,6 +58,8 @@ export class HeaderComponent implements OnInit {
   getUsernameAccount() {
     if (this.tokenStorageService.getToken()) {
       this.nameUser = this.tokenStorageService.getUser().name;
+
+      this.emailUser = this.tokenStorageService.getUser().email;
     }
   }
 

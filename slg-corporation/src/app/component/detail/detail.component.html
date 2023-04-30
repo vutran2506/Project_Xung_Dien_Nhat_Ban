@@ -29,14 +29,14 @@
             <div class="right-content">
               <div class="quantity buttons_added">
                 <input type="button" value="-" class="minus">
-                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                <input #element type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
                 <input type="button" value="+" class="plus">
               </div>
             </div>
           </div>
           <div class="total">
             <h5>Tổng tiền: $210.00</h5>
-            <div> <a><button class="btn-effect">Thêm vào giỏ hàng</button></a></div>
+            <div> <a><button class="btn-effect" (click)="addTCart(element.value,product.id)">Thêm vào giỏ hàng</button></a></div>
           </div>
         </div>
       </div>

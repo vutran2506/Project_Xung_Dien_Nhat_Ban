@@ -45,6 +45,10 @@ public class Product {
         this.imageSet = imageSet;
     }
 
+    public Product(long idProduct) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }

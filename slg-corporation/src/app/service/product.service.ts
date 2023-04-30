@@ -11,10 +11,10 @@ export class ProductService {
   constructor(private httpClient:HttpClient) {
   }
 getAllPageProduct(name:string,page:number,pageSize:number):Observable<ProductDTO[]>{
-return this.httpClient.get<ProductDTO[]>('http://localhost:8080/api/user/product/list?page='+page+'&size='+pageSize+'&name='+name);
+return this.httpClient.get<ProductDTO[]>('http://localhost:8080/api/public/product/list?page='+page+'&size='+pageSize+'&name='+name);
 }
 findProductBbyId(id:number):Observable<ProductDTO>{
-    return this.httpClient.get<ProductDTO>('http://localhost:8080/api/user/product/detail/'+id)
+    return this.httpClient.get<ProductDTO>('http://localhost:8080/api/public/product/detail/'+id)
 }
 
 }

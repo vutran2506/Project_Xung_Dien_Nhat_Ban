@@ -18,29 +18,29 @@
         <li [hidden]="!isLoggedIn || role!=='ROLE_ADMIN'"><a class="nav-link" [routerLink]="['customer']"><span class="n-item"
                                                                   style="font-size: 22px">Khách hàng</span></a>
         </li>
-        <li [hidden]="!isLoggedIn" >
-          <a href="#product-section" class="nav-link" [routerLink]="['product']"><span
+        <li  >
+          <a href="#product-section" class="nav-link" [routerLink]="['']"><span
             class="n-item" style="font-size: 22px" >Sản phẩm</span></a>
         </li>
-        <li [hidden]="!isLoggedIn" >
+        <li  >
           <a class="nav-link" [routerLink]="['product']"><span
             class="n-item" style="font-size: 22px">Các chứng nhận</span></a>
         </li>
-        <li [hidden]="!isLoggedIn" >
-          <a class="nav-link" [routerLink]="['product']"><span
+        <li  >
+          <a class="nav-link" routerLink="/cart/nguyenvan@gmail.com"><span
             class="n-item" style="font-size: 22px">Phương pháp trị liệu</span></a>
         </li>
         <li [hidden]="!isLoggedIn || role!=='ROLE_ADMIN'"><a class="nav-link"><span class="n-item" style="font-size: 22px">Thống kê</span></a></li>
-        <li [hidden]="!isLoggedIn">
-          <a class="nav-link">
+        <li [hidden]="!isLoggedIn || role!=='ROLE_USER'" >
+          <a class="nav-link" >
             <span class="n-item" style="font-size: 22px">
-            <a><i class="fa fa-shopping-cart" routerLink="/cart"></i></a></span>
+            <a routerLink="/cart"><i class="fa fa-shopping-cart"></i></a></span>
           </a>
         </li>
+        <li [hidden]="!isLoggedIn || role!=='ROLE_ADMIN'"><a class="nav-link"><span class="n-item" style="font-size: 22px">Thống kê</span></a></li>
 
-        <li [hidden]="isLoggedIn">
-          <a routerLink="/security/login" style="color: #eb5d1e"><span class="n-item" style="font-size: 22px;margin-bottom: 2rem"></span><i class="fa fa-sign-in"></i></a>
-        </li>
+        <li [hidden]="isLoggedIn ">
+          <a routerLink="/security/login" class="nav-link"><span class="n-item" style="font-size: 22px">Đăng nhập</span></a></li>
         <li [hidden]="!isLoggedIn">
           <div class="dropdownUser">
             <div class="n-item d-flex align-items-center">

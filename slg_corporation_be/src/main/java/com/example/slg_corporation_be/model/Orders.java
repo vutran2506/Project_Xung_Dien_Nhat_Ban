@@ -10,8 +10,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private double totalPrice;
-    private String methodPay;
+    private String dayPurchase;
 
     @OneToMany(mappedBy = "orders")
     @JsonBackReference
@@ -22,27 +21,17 @@ public class Orders {
 
     public Orders() {
     }
-    public Orders(long id, double totalPrice, String methodPay, Set<OrderDetail> orderDetailSet, AppUser appUser) {
+  @ManyToOne
+    @JoinColumn(name = "payment_id",referencedColumnName = "id")
+    private  Payment payment;
+
+    public Orders(long id, String dayPurchase, Set<OrderDetail> orderDetailSet, AppUser appUser, Payment payment) {
         this.id = id;
-        this.totalPrice = totalPrice;
-        this.methodPay = methodPay;
+        this.dayPurchase = dayPurchase;
         this.orderDetailSet = orderDetailSet;
         this.appUser = appUser;
+        this.payment = payment;
     }
-
-    public double getTotalPrice() {
-        double sum =0.0;
-        for (OrderDetail odd: orderDetailSet ){
-            sum += odd.getProduct().getPrice();
-        }
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-
 
     public long getId() {
         return id;
@@ -51,12 +40,13 @@ public class Orders {
     public void setId(long id) {
         this.id = id;
     }
-    public String getMethodPay() {
 
-        return methodPay;
+    public String getDayPurchase() {
+        return dayPurchase;
     }
-    public void setMethodPay(String methodPay) {
-        this.methodPay = methodPay;
+
+    public void setDayPurchase(String dayPurchase) {
+        this.dayPurchase = dayPurchase;
     }
 
     public Set<OrderDetail> getOrderDetailSet() {
@@ -73,5 +63,13 @@ public class Orders {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

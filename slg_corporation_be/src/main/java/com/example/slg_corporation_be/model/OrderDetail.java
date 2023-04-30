@@ -8,9 +8,9 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int amount;
-    private boolean status;
+    private boolean isDelete;
     private String dayPurchase;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_order",referencedColumnName = "id")
     private Orders orders;
     @ManyToOne
@@ -20,29 +20,13 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(long id, int amount, boolean status, String dayPurchase, Orders orders, Product product) {
+    public OrderDetail(long id, int amount, boolean isDelete, String dayPurchase, Orders orders, Product product) {
         this.id = id;
         this.amount = amount;
-        this.status = status;
+        this.isDelete = isDelete;
         this.dayPurchase = dayPurchase;
         this.orders = orders;
         this.product = product;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public String getDayPurchase() {
-        return dayPurchase;
-    }
-
-    public void setDayPurchase(String dayPurchase) {
-        this.dayPurchase = dayPurchase;
     }
 
     public long getId() {
@@ -59,6 +43,22 @@ public class OrderDetail {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    public String getDayPurchase() {
+        return dayPurchase;
+    }
+
+    public void setDayPurchase(String dayPurchase) {
+        this.dayPurchase = dayPurchase;
     }
 
     public Orders getOrders() {

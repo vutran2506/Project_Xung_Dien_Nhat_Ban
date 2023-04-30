@@ -1,12 +1,15 @@
 package com.example.slg_corporation_be.service;
 
-import com.example.slg_corporation_be.model.OrderDetail;
+import com.example.slg_corporation_be.dto.IOrderDetailDTO;
+import com.example.slg_corporation_be.model.Product;
 
 import java.util.List;
 
 public interface IOrderDetailService {
-   List<OrderDetail> addCartByUser(long idProduct, long idUser );
-   List<OrderDetail> getCartByUser(long id);
-   List<OrderDetail> removeCartByUser(long idCard, long idUser);
+
+    List<IOrderDetailDTO> getCartByUser(String email);
+
+    List<Product> findProductsByEmail(String email);
+
 
 }

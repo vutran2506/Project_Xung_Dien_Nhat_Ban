@@ -18,7 +18,6 @@ public class IProductDTO {
     public IProductDTO(long id) {
         this.id = id;
     }
-
     public IProductDTO() {
     }
 

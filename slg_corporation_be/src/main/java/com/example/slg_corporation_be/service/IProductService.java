@@ -10,5 +10,4 @@ public interface IProductService {
     Page<Product>getAllPageProduct(String name, Pageable pageable);
     Product findProductDTOById(long id);
     Product findProductById(long id);
-
 }

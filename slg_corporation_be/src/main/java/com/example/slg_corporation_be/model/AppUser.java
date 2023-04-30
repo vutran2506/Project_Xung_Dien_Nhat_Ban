@@ -45,6 +45,10 @@ public class AppUser {
         this.ordersSet = ordersSet;
     }
 
+    public AppUser(String email) {
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }

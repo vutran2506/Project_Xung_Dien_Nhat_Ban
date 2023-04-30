@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
     this.productService.getAllPageProduct(this.nameSearch,this.page,this.pageSize).subscribe(items =>{
       this.product = items;
       if (items == null){
-        this.message="Không tìm thấy sản phẩm";
+        this.message="Không tìm thấy kết quả nào với từ khoá : "+this.nameSearch;
       }else {
         this.message = null;
       }

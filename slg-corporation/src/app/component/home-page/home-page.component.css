@@ -105,7 +105,7 @@ hr{
 .readmore {
   font-size: 50px;
   position: relative;
-  top: 2rem;
+  top: 1rem;
   font-family: Lato;
   color: #27509A;
   font-style: italic;
@@ -118,7 +118,7 @@ hr{
 .readmore:hover {
   font-size: 50px;
   position: relative;
-  top: 4rem;
+  top: 1rem;
   font-family: Lato;
   color: black;
   font-style: italic;
@@ -274,5 +274,15 @@ background-color:#27509A;
   border-radius: 40px;
   font-size: 22px;
 }
+.div-search{
+  color: #5058c7;
+  padding: 10px;
+  margin-top: 60px;
 
+}
+.row {
+  display: flex;
+  justify-content: center; /* căn giữa theo chiều ngang */
+  margin-top: 20px; /* cách top 20px */
+}
 
