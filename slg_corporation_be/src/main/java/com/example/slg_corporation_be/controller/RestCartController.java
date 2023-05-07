@@ -30,9 +30,6 @@ public class RestCartController {
     @GetMapping("/list/{email}")
     public ResponseEntity<?> getCart(@PathVariable String email) {
         List<IOrderDetailDTO> cart = this.iOrderDetailService.getCartByUser(email);
-        if (cart.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
 
         List<OrderDetailDTO> cartDTO = new ArrayList<>();
 
@@ -56,6 +53,21 @@ public class RestCartController {
     @PostMapping("/addCart")
     public ResponseEntity<?> addCart(@RequestParam long idProduct, @RequestParam String email, @RequestParam int amount) {
         this.iOrdersService.addOrders(idProduct, email, amount);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/buyNowCart")
+    public ResponseEntity<?> addCart(@RequestParam long idProduct, @RequestParam String email) {
+        this.iOrdersService.buyNowOrders(idProduct, email);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/updateCart")
+    public ResponseEntity<?> updateCart(@RequestParam long id, @RequestParam int amount) {
+    this.iOrderDetailService.updateOrDetail(id,amount);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteCart/{id}")
+    public ResponseEntity<?>deleteCart(@PathVariable long id){
+        this.iOrderDetailService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class OderDetailService implements IOrderDetailService {
     @Autowired
 
-    private IOrderDetailRepository iOrderRepository;
+    private IOrderDetailRepository iOrderDetailRepository;
     @Autowired
     private IProductRepository iProductRepository;
 
@@ -25,6 +26,24 @@ public class OderDetailService implements IOrderDetailService {
     @Override
     public List<Product> findProductsByEmail(String email) {
         return iProductRepository.findProductsByEmail(email);
+    }
+
+    @Override
+    public void updateOrDetail(long id, int amount) {
+        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProduct(id);
+        orderDetail.setAmount(amount);
+        this.iOrderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public OrderDetail findByIdProduct(long id) {
+        return this.iOrderDetailRepository.findByIdProduct(id);
+    }
+
+    @Override
+    public void remove(long idProduct) {
+        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProduct(idProduct);
+        this.iOrderDetailRepository.delete(orderDetail);
     }
 
 }

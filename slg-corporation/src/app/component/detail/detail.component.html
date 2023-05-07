@@ -28,14 +28,14 @@
             </div>
             <div class="right-content">
               <div class="quantity buttons_added">
-                <input type="button" value="-" class="minus">
-                <input #element type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                <input type="button" value="+" class="plus">
+                <input type="button" value="-" class="minus" (click)="minusAmount()">
+                <input #element type="number" step="1" min="1" max="" name="quantity" value="{{amount}}" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                <input type="button" value="+" class="plus" (click)="plusAmount()">
               </div>
             </div>
           </div>
           <div class="total">
-            <h5>Tổng tiền: $210.00</h5>
+            <h5>Tổng tiền: {{product.price*amount|  number:'1.0-0'}} đ</h5>
             <div> <a><button class="btn-effect" (click)="addTCart(element.value,product.id)">Thêm vào giỏ hàng</button></a></div>
           </div>
         </div>

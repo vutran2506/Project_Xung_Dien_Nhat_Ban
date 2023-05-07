@@ -31,16 +31,6 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
     }
-    if(this.loginService.isLoggedIn) {
-      Swal.fire({
-        text: 'Bạn đã đăng nhập.',
-        icon: 'warning',
-        iconColor: 'darkorange',
-        showConfirmButton: false,
-        timer: 1500
-      });
-      this.router.navigateByUrl('/product');
-    }
     this.view();
     this.loginForm = new FormGroup({
       username: new FormControl('',[Validators.email, Validators.required]),
@@ -60,6 +50,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.login(this.loginForm.value).subscribe(
+
       data => {
         debugger
         if (this.loginForm.value.rememberMe) {
@@ -84,7 +75,6 @@ export class LoginComponent implements OnInit {
         this.shareService.sendClickEvent();
       },
       err => {
-        // this.errorMessage = err.error.message;
         this.loginService.isLoggedIn = false;
         Swal.fire({
           text: 'Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt!',

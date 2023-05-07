@@ -54,8 +54,9 @@
                       <button class="btn-effect" routerLink="/detail/{{pro.id}}">Xem chi tiết</button>
                     </a>
                     <a>
-                      <button class="btn-effect" routerLink="/cart">Mua Ngay</button>
+                      <button class="btn-effect" *ngIf="pro.quantity!=0" (click)="buyNow(pro.id)">Mua Ngay</button>
                     </a>
+                    <button class="btn-effect " *ngIf="pro.quantity ==0" style="color: red">Hết hàng</button>
                   </div>
                 </div>
               </div>

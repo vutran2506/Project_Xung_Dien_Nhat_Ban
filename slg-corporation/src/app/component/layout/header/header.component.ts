@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {ShareService} from "../../../security-authentication/service/share.service";
 import {TokenStorageService} from "../../../security-authentication/service/token-storage.service";
+import {ShareDataService} from "../../../service/share-data.service";
+import {LoginService} from "../../../security-authentication/service/login.service";
 
 @Component({
   selector: 'app-header',
@@ -17,10 +19,13 @@ export class HeaderComponent implements OnInit {
  emailUser:string;
   role: string;
   isLoggedIn = false;
+ totalProduct: number;
 
   constructor(private tokenStorageService: TokenStorageService,
               private shareService: ShareService,
-              private router: Router) {
+              private shareDataService: ShareDataService,
+              private router: Router,
+             ) {
   }
 
   loadHeader(): void {
@@ -28,10 +33,12 @@ export class HeaderComponent implements OnInit {
       this.currentUser = this.tokenStorageService.getUser().username;
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
-      debugger
     }
     this.isLoggedIn = this.username != null;
     this.getUsernameAccount();
+    this.shareDataService.getTotalProduct().subscribe(totalProduct => {
+      this.totalProduct = totalProduct;
+    });
   }
 
 
@@ -44,15 +51,15 @@ export class HeaderComponent implements OnInit {
 
   async logOut() {
     this.tokenStorageService.signOut();
-    this.shareService.sendClickEvent();
+
     await Swal.fire({
       text: 'Đăng xuất thành công',
       icon: 'success',
       showConfirmButton: false,
       timer: 1500
     });
+    this.isLoggedIn = false;
     await this.router.navigateByUrl('');
-    location.reload();
   }
 
   getUsernameAccount() {

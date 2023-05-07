@@ -7,6 +7,7 @@ import com.example.slg_corporation_be.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -51,6 +52,49 @@ public class OrdersService implements IOrdersService {
 
         }
     }
+
+    @Override
+    public void buyNowOrders(long idProduct, String email) {
+        Orders order = this.iOrdersRepository.findOrderByEmail(email);
+        OrderDetail orderDetail = new OrderDetail();
+        if (order == null){
+            Orders orders = new Orders();
+            orders.setDayPurchase(String.valueOf(new Date()));
+            orders.setAppUser(new AppUser(email));
+            this.iOrdersRepository.save(orders);
+            orderDetail.setAmount(1);
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = formatter.format(date);
+            orderDetail.setDayPurchase(dateString);
+            orderDetail.setDelete(false);
+            orderDetail.setProduct(new Product(idProduct));
+            orderDetail.setOrders(orders);
+            this.iOrderDetailRepository.save(orderDetail);
+        }else {
+            OrderDetail orderDetailExist = this.iOrderDetailRepository.findByIdProductAndByEmail(idProduct, email);
+            if (orderDetailExist != null){
+                orderDetailExist.setAmount(orderDetailExist.getAmount()+1);
+                this.iOrderDetailRepository.save(orderDetailExist);
+            }else {
+                Orders orders = this.iOrdersRepository.findOrderByEmail(email);
+                orderDetail.setAmount(1);
+                Date date = new Date();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String dateString = formatter.format(date);
+                orderDetail.setDayPurchase(dateString);
+                orderDetail.setDelete(false);
+                Product product = this.iProductRepository.findById(idProduct).orElse(null);
+                orderDetail.setProduct(product);
+                orderDetail.setOrders(orders);
+                this.iOrderDetailRepository.save(orderDetail);
+            }
+
+        }
+    }
+
+
+
     @Override
     public Orders findOrderByEmail(String email) {
         return this.iOrdersRepository.findOrderByEmail(email);

@@ -12,89 +12,102 @@
                     <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
                     <h6 style="font-size: 32px" class="mb-0 text-muted">Số sản phẩm: {{carts?.length}}</h6>
                   </div>
-                  <h5 style="text-align: center; color: red" *ngIf="carts.length == 0">Giỏ hàng đang trống, vui lòng chọn sản phẩm!</h5>
-<div *ngFor="let cart of carts">
-  <div class="row mb-4 d-flex justify-content-between align-items-center style-text">
-    <div class="col-md-2 col-lg-2 col-xl-2" >
-      Hình ảnh
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-3" >Tên sản phẩm
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-2 d-flex" >
-     Số lượng
-    </div>
-    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-      Đơn giá
-    </div>
-    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-   Xoá
-    </div>
-  </div>
+                  <h5 style="text-align: center; color: red" *ngIf="checkQuantityCart == 0">Giỏ hàng đang trống, vui lòng
+                    chọn sản phẩm!</h5>
 
+                    <div class="row mb-4 d-flex justify-content-between align-items-center style-text">
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        Hình ảnh
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2">Tên sản phẩm
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 ">
+                        Số lượng
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 ">
+                        Đơn giá
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 ">
+                        Tổng tiền
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 ">
+                        Xoá
+                      </div>
+                    </div>
 
+                    <div *ngFor="let cart of carts" [hidden]="checkQuantityCart==0">
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <img
+                          src="{{cart?.imageList[0]?.image}}"
+                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <h6 class="text-muted">{{cart?.name}}</h6>
+                        <h6 class="text-black mb-0">T-Fish</h6>
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 d-flex">
+                        <button class="btn btn-link px-2"
+                                (click)="stepDown(cart)">
+                          <i class="fa fa-minus"></i>
+                        </button>
 
-  <div class="row mb-4 d-flex justify-content-between align-items-center"  >
-    <div class="col-md-2 col-lg-2 col-xl-2">
-      <img
-        src="{{cart?.imageList[0]?.image}}"
-        class="img-fluid rounded-3" alt="Cotton T-shirt">
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
-      <h6 class="text-muted">{{cart?.name}}</h6>
-      <h6 class="text-black mb-0">T-Fish</h6>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-      <button class="btn btn-link px-2"
-              (click)="stepDown(cart)" >
-        <i class="fa fa-minus"></i>
-      </button>
+                        <input #element (change)="updateQuantity(element.value,cart?.id)" value="{{cart?.amount}}"
+                               class="form-control form-control-sm"/>
+                        <button class="btn btn-link px-2"
+                                (click)="stepUp(cart)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">{{cart?.price|  number:'1.0-0'}}đ</h6>
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">{{cart?.totalItem|  number:'1.0-0'}}đ</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <button data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                (click)="deleteAllCart(cart)" style="" class="btn">&#10005;
+                        </button>                      </div>
+                    </div>
 
-      <input  min="0" name="quantity" value="{{cart?.amount}}"
-              class="form-control form-control-sm" />
-
-      <button class="btn btn-link px-2"
-              (click)="stepUp(cart)">
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-      <h6 class="mb-0">{{cart?.price}}đ</h6>
-    </div>
-    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-      <a href="#!" class="text-muted"><i class="fa fa-times"></i></a>
-    </div>
-  </div>
-
-  <hr class="my-4">
-</div>
+                    <hr class="my-4">
+                  </div>
                   <div class="pt-5">
-                    <h6 class="mb-0"><button class="text-body btn-primary" routerLink=""><i
-                      class="fa fa-long-arrow-alt-left me-2"></i>Mua thêm</button></h6>
+                    <h6 class="mb-0">
+                      <button class="text-body btn-primary" routerLink=""><i
+                        class="fa fa-long-arrow-alt-left me-2"></i>Mua thêm
+                      </button>
+                    </h6>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 bg-grey bg-1">
                 <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Order Summary</h3>
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Thanh toán</h3>
 
                   <div class="d-flex justify-content-between mb-4">
-                    <p class="text-uppercase" style="font-weight: bold">Quantity: 3</p>
-                    <p style="font-weight: bold">€ 132.00</p>
+                    <p class="text-uppercase" style="font-weight: bold">Tổng số lượng sản phẩm: {{totalAmount}}</p>
+                    <p style="font-weight: bold">
+
+                    </p>
                   </div>
 
-                  <p class="text-uppercase mb-3" style="font-weight: bold">Discount Code</p>
+                  <p class="text-uppercase mb-3" style="font-weight: bold">Mã giảm giá</p>
 
                   <div class="mb-5">
                     <div class="form-outline">
-                      <input type="text" id="form3Examplea2" placeholder="enter your code" class="form-control form-control" />
+                      <input type="text" id="form3Examplea2" placeholder="Nhập mã giảm giá"
+                             class="form-control form-control"/>
                     </div>
                   </div>
                   <div class="d-flex justify-content-between mb-5">
                     <p class="text-uppercase" style="font-weight: bold">Tổng tiền</p>
-                    <p style="font-weight: bold">€ 137.00</p>
+                    <p style="font-weight: bold">{{total|  number:'1.0-0'}}đ</p>
                   </div>
 
-                  <button type="button" class="btn btn-primary btn-block" data-mdb-ripple-color="dark">Thanh toán</button>
+                  <button type="button" class="btn btn-primary btn-block" data-mdb-ripple-color="dark" routerLink="/paypal">Thanh toán
+                  </button>
 
                 </div>
               </div>
@@ -107,7 +120,30 @@
 </section>
 </body>
 
-
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     style="max-width: 500rem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận xóa sản phẩm</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="text-align: center; margin-right: 3%; width: 102%">
+        <span>Bạn có chắc chắn muốn xoá sản phẩm </span>
+        <span style="color: red">{{deleteCart?.name}}</span>
+        <span> ra khỏi giỏ hàng?</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #e4e6eb">Đóng
+        </button>
+        <button type="button" class="btn"
+                data-bs-dismiss="modal" style="background-color: darkorange"
+                (click)="delete(deleteCart?.id)">Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

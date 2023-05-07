@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./security-authentication/security-auth/auth.interceptor";
 import { ErrorPageComponent } from './component/error-page/error-page.component';
+import { PaypalComponent } from './component/paypal/paypal.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
     DetailComponent,
     HomePageComponent,
     CartComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    PaypalComponent
   ],
   imports: [
     BrowserModule,

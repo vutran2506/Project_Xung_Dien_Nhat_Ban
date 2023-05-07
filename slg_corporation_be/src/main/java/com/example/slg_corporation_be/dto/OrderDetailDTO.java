@@ -6,9 +6,10 @@ import com.example.slg_corporation_be.model.Product;
 import java.util.List;
 
 public class OrderDetailDTO {
+    private Long id;
     private String name;
     private int amount;
-    private Long id;
+
     private double price;
     private List<Image> imageList;
 

@@ -28,6 +28,9 @@ export class LoginService {
       password: obj.password
     }, this.httpOptions);
   }
+  logout(): Observable<any> {
+    return this.http.get(AUTH_API + 'logout');
+  }
 
   forgotPassword(username: string): Observable<any> {
     return this.http.get(AUTH_API + 'reset-password/' + username);

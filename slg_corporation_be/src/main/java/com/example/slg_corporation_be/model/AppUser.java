@@ -12,12 +12,17 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(length = 45,nullable = false)
     private String name;
+    @Column(unique = true)
     private String idCard;
     private boolean gender;
     private String dateOfBirth;
+    @Column(nullable = false)
     private String numberPhone;
+    @Column(length = 45,unique = true)
     private String email;
+    @Column(length = 100,nullable = false)
     private String address;
     private boolean isDeleted;
     @OneToOne(mappedBy = "appUser")

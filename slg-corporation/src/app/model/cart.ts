@@ -6,4 +6,5 @@ export interface Cart {
   amount:number;
   price:number;
   imageList:Image[];
+  totalItem:number;
 }

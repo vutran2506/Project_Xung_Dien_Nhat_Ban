@@ -6,6 +6,7 @@ import {ShareService} from "../../security-authentication/service/share.service"
 import {TokenStorageService} from "../../security-authentication/service/token-storage.service";
 import {CartService} from "../../service/cart.service";
 import Swal from "sweetalert2";
+import {ShareDataService} from "../../service/share-data.service";
 
 @Component({
   selector: 'app-detail',
@@ -16,14 +17,16 @@ export class DetailComponent implements OnInit {
   product: ProductDTO;
   id: number;
   email: string;
-  amount: number;
+  amount=1;
   idProduct: number;
+ totalProduct: number;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private cartService: CartService,
               private shareService: ShareService,
               private tokenStorageService: TokenStorageService,
+              private shareDataService:ShareDataService,
               private router: Router) {
 
   }
@@ -35,6 +38,7 @@ export class DetailComponent implements OnInit {
     this.productService.findProductBbyId(this.id).subscribe(item => {
       console.log(item)
       this.product = item;
+
     })
     this.view()
   }
@@ -49,13 +53,13 @@ export class DetailComponent implements OnInit {
   addTCart(value: string, id: number) {
     if (this.tokenStorageService.getToken()) {
       this.email = this.tokenStorageService.getUser().username;
-      console.log(this.email)
       this.amount = +value;
-      console.log(this.amount)
       this.idProduct = id;
-      console.log(this.idProduct)
       this.cartService.addToCart(this.amount, this.idProduct, this.email).subscribe(data => {
-        debugger
+        this.shareDataService.getTotalProduct().subscribe(totalProduct => {
+          this.totalProduct = totalProduct;
+          this.shareService.sendClickEvent();
+        });
         Swal.fire({
           icon: 'success',
           iconColor: 'darkorange',
@@ -66,7 +70,19 @@ export class DetailComponent implements OnInit {
         })
       })
     } else {
+      Swal.fire({
+        title: 'Bạn cần đăng nhập tài khoản.',
+        confirmButtonColor: 'darkorange'
+      })
       this.router.navigateByUrl('/security/login');
     }
+  }
+
+  plusAmount() {
+this.amount ++;
+  }
+
+  minusAmount() {
+this.amount--
   }
 }

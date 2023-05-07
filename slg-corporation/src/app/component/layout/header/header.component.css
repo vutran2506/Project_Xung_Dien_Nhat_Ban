@@ -193,4 +193,9 @@ h5 .card-title
   animation: zoom 20s;
 
 }
-
+.badge{
+  min-height: 50px;
+  padding: 0px;
+  margin-left: 1rem;
+  border-radius: 50rem;
+}
