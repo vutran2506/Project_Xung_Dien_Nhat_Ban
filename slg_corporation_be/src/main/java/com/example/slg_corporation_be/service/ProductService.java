@@ -1,6 +1,6 @@
 package com.example.slg_corporation_be.service;
 
-import com.example.slg_corporation_be.dto.IProductDTO;
+
 
 import com.example.slg_corporation_be.model.Product;
 import com.example.slg_corporation_be.repository.IProductRepository;
@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductService implements IProductService {
@@ -28,4 +30,11 @@ public class ProductService implements IProductService {
     public Product findProductById(long id) {
         return this.findProductById(id);
     }
+
+    @Override
+    public List<Product> getAllProduct() {
+        return this.iProductRepository.findAll();
+    }
+
+
 }

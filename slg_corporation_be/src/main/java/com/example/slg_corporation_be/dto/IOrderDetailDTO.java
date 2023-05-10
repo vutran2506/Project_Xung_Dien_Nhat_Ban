@@ -17,4 +17,5 @@ public interface IOrderDetailDTO {
     Long getId();
 
     List<Image> getImageList ();
+
 }

@@ -29,21 +29,31 @@ public class OderDetailService implements IOrderDetailService {
     }
 
     @Override
-    public void updateOrDetail(long id, int amount) {
-        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProduct(id);
+    public void updateOrDetail(long id, int amount,String email) {
+        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProductAndByEmail(id,email);
         orderDetail.setAmount(amount);
         this.iOrderDetailRepository.save(orderDetail);
     }
 
     @Override
-    public OrderDetail findByIdProduct(long id) {
-        return this.iOrderDetailRepository.findByIdProduct(id);
+    public void remove(long idProduct,String email) {
+        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProductAndByEmail(idProduct, email);
+        this.iOrderDetailRepository.delete(orderDetail);
     }
 
     @Override
-    public void remove(long idProduct) {
-        OrderDetail orderDetail = this.iOrderDetailRepository.findByIdProduct(idProduct);
-        this.iOrderDetailRepository.delete(orderDetail);
+    public void payCart(OrderDetail orderDetail) {
+        this.iOrderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public List<OrderDetail> findOrderDetailByEmail(String email) {
+        return this.iOrderDetailRepository.getAllOrderDetailByEmail(email);
+    }
+
+    @Override
+    public List<OrderDetail> getHistoryOrderDetail(String email, long idOrder) {
+        return this.iOrderDetailRepository.getListOrderHistory(email,idOrder);
     }
 
 }

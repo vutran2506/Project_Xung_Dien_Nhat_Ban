@@ -6,6 +6,8 @@ import {DetailComponent} from "./component/detail/detail.component";
 import {HomePageComponent} from "./component/home-page/home-page.component";
 import {PaypalComponent} from "./component/paypal/paypal.component";
 import {UserGuard} from "./security-authentication/security-auth/user.guard";
+import {HistoryPaymentComponent} from "./component/history-payment/history-payment.component";
+import {ErrorPageComponent} from "./component/error-page/error-page.component";
 
 
 
@@ -24,6 +26,11 @@ const routes: Routes = [
   },
   {
     path:'paypal',component:PaypalComponent
+  },
+  {
+    path:'historyOrder',component:HistoryPaymentComponent
+  },{
+  path:'error',component:ErrorPageComponent
   }
 ];
 

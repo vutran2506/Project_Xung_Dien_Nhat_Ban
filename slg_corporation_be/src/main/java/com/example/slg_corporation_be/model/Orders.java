@@ -11,6 +11,9 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String dayPurchase;
+    private  boolean statusPayment;
+
+    private String totalPrice;
 
     @OneToMany(mappedBy = "orders")
     @JsonBackReference
@@ -18,19 +21,16 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "id_appUser", referencedColumnName = "id")
     private AppUser appUser;
-
     public Orders() {
     }
-  @ManyToOne
-    @JoinColumn(name = "payment_id",referencedColumnName = "id")
-    private  Payment payment;
 
-    public Orders(long id, String dayPurchase, Set<OrderDetail> orderDetailSet, AppUser appUser, Payment payment) {
-        this.id = id;
-        this.dayPurchase = dayPurchase;
-        this.orderDetailSet = orderDetailSet;
-        this.appUser = appUser;
-        this.payment = payment;
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public long getId() {
@@ -49,6 +49,14 @@ public class Orders {
         this.dayPurchase = dayPurchase;
     }
 
+    public boolean isStatusPayment() {
+        return statusPayment;
+    }
+
+    public void setStatusPayment(boolean statusPayment) {
+        this.statusPayment = statusPayment;
+    }
+
     public Set<OrderDetail> getOrderDetailSet() {
         return orderDetailSet;
     }
@@ -63,13 +71,5 @@ public class Orders {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
     }
 }

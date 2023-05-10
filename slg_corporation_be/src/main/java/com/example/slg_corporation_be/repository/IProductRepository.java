@@ -27,15 +27,14 @@ IProductRepository extends JpaRepository<Product,Long>{
             " join product p on p.id= od.id_product\n" +
             "join orders o on o.id = od.id_order\n" +
             "join app_user ap on ap.id = o.id_app_user\n" +
-            "join payment pm on pm.id = o.payment_id \n" +
-            "where ap.email =:email", nativeQuery = true)
+            "where ap.email =:email and od.is_delete= false", nativeQuery = true)
     List<IOrderDetailDTO> getAllOrderDetailByUser(@Param("email") String email);
 
     @Query(value = "select p.* from order_detail od\n" +
             " join product p on p.id= od.id_product\n" +
             "join orders o on o.id = od.id_order\n" +
             "join app_user ap on ap.id = o.id_app_user\n" +
-            "join payment pm on pm.id = o.payment_id \n" +
             "where ap.email = :email", nativeQuery = true)
     List<Product> findProductsByEmail(String email);
+
 }

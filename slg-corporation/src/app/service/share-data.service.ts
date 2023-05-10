@@ -17,6 +17,12 @@ export class ShareDataService {
   constructor(private tokenStorageService: TokenStorageService,
               private cartService: CartService,
               private router: Router) { }
+  handleWindowClose() {
+    // Thực hiện các xử lý khi cửa sổ đóng
+
+    // Điều hướng đến component khác
+    this.router.navigateByUrl('/cart');
+  }
   getTotalProduct(): Observable<number> {
     return new Observable<number>((observer) => {
       if (this.tokenStorageService.getToken()) {
@@ -31,7 +37,7 @@ export class ShareDataService {
           observer.complete();
         });
       } else {
-        this.router.navigateByUrl('/security/login');
+        this.router.navigateByUrl('');
         observer.next(0);
         observer.complete();
       }

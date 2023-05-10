@@ -13,6 +13,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./security-authentication/security-auth/auth.interceptor";
 import { ErrorPageComponent } from './component/error-page/error-page.component';
 import { PaypalComponent } from './component/paypal/paypal.component';
+import { HistoryPaymentComponent } from './component/history-payment/history-payment.component';
+import { OrderdetailComponent } from './component/orderdetail/orderdetail.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { PaypalComponent } from './component/paypal/paypal.component';
     HomePageComponent,
     CartComponent,
     ErrorPageComponent,
-    PaypalComponent
+    PaypalComponent,
+    HistoryPaymentComponent,
+    OrderdetailComponent
   ],
   imports: [
     BrowserModule,

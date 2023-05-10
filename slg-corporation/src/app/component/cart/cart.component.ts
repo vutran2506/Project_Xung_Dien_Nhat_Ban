@@ -6,6 +6,7 @@ import {TokenStorageService} from "../../security-authentication/service/token-s
 import {ShareService} from "../../security-authentication/service/share.service";
 import Swal from "sweetalert2";
 import {ShareDataService} from "../../service/share-data.service";
+import {render} from "creditcardpayments/creditCardPayments";
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,7 @@ import {ShareDataService} from "../../service/share-data.service";
 })
 export class CartComponent implements OnInit {
   email: string;
+  listError: string[];
   carts: Cart[];
   total = 0;
   totalAmount = 0;
@@ -24,17 +26,20 @@ export class CartComponent implements OnInit {
   idCartDetail: number;
   checkQuantityCart = 0;
   message: string;
+  idProduct: number;
+  convertCurrency: any;
+  isRender = false;
 
   constructor(private cartService: CartService,
               private shareService: ShareService,
               private tokenStorageService: TokenStorageService,
               private shareDataService: ShareDataService,
               private router: Router) {
+
   }
 
   ngOnInit(): void {
     this.getUserId()
-    this.view()
   }
 
   getUserId() {
@@ -45,16 +50,19 @@ export class CartComponent implements OnInit {
         this.total = 0;
         this.totalAmount = 0;
         this.checkQuantityCart = this.carts.length;
-          for (let i = 0; i < this.carts.length; i++) {
-            this.carts[i].totalItem = this.carts[i].price*this.carts[i].amount;
-            this.total += this.carts[i].price * this.carts[i].amount;
-            this.totalAmount += this.carts[i].amount;
-          }
-          debugger
+        for (let i = 0; i < this.carts.length; i++) {
+          this.carts[i].totalItem = this.carts[i].price * this.carts[i].amount;
+          this.total += this.carts[i].price * this.carts[i].amount;
+          this.totalAmount += this.carts[i].amount;
+          this.view()
+        }
+        this.convertCurrency = this.total / 23000;
         this.shareDataService.getTotalProduct().subscribe(totalProduct => {
           this.totalProduct = totalProduct;
           this.shareService.sendClickEvent();
         });
+        this.convertCurrency = Math.round(this.convertCurrency * 100) / 100;
+        this.isRender = false;
       });
     } else {
       this.router.navigateByUrl('/security/login');
@@ -67,11 +75,11 @@ export class CartComponent implements OnInit {
         title: 'Số lượng sản phẩm không được bằng không',
       })
     } else {
-      debugger
       cart.amount--
       this.quantityUpdate = cart.amount
       this.idCartDetail = cart.id;
-      this.cartService.updateToCart(this.quantityUpdate, this.idCartDetail).subscribe(next => {
+      this.email = this.tokenStorageService.getUser().username;
+      this.cartService.updateToCart(this.quantityUpdate, this.idCartDetail, this.email).subscribe(next => {
         this.getUserId()
       });
 
@@ -84,8 +92,8 @@ export class CartComponent implements OnInit {
     cart.amount++;
     this.quantityUpdate = cart.amount
     this.idCartDetail = cart.id;
-    debugger
-    this.cartService.updateToCart(this.quantityUpdate,this.idCartDetail).subscribe(next => {
+    this.email = this.tokenStorageService.getUser().username;
+    this.cartService.updateToCart(this.quantityUpdate, this.idCartDetail, this.email).subscribe(next => {
       this.getUserId()
     });
 
@@ -103,8 +111,8 @@ export class CartComponent implements OnInit {
 
     this.quantityUpdate = +amount;
     this.idCartDetail = id;
-
-    this.cartService.updateToCart(this.quantityUpdate, this.idCartDetail).subscribe(next => {
+    this.email = this.tokenStorageService.getUser().username;
+    this.cartService.updateToCart(this.quantityUpdate, this.idCartDetail, this.email).subscribe(next => {
       this.getUserId()
     });
 
@@ -116,8 +124,10 @@ export class CartComponent implements OnInit {
   }
 
   delete(idProduct: number) {
-
-    this.cartService.removeCart(idProduct).subscribe(next => {
+    this.idProduct = idProduct;
+    debugger
+    this.email = this.tokenStorageService.getUser().username;
+    this.cartService.removeCart(this.idProduct, this.email).subscribe(next => {
 
       Swal.fire({
         icon: 'success',
@@ -132,4 +142,44 @@ export class CartComponent implements OnInit {
     });
 
   }
+
+
+  payCart(convertCurrency: number) {
+    this.listError = undefined;
+    this.cartService.payCart().subscribe(next => {
+      this.convertCurrency = convertCurrency
+      this.isRender = true;
+      document.querySelector('#myPaypalButtons').innerHTML = '';
+      render(
+        {
+          id: "#myPaypalButtons",
+          currency: "USD",
+          value: this.convertCurrency,
+          onApprove: (details => {
+            this.getUserId()
+            Swal.fire({
+              icon: 'success',
+              iconColor: 'darkorange',
+              title: 'Đã thanh toán khỏi giỏ hàng thành công.',
+              confirmButtonText: 'Xác nhận',
+              confirmButtonColor: 'darkorange'
+
+            });
+          })
+        })
+    }, error => {
+      this.getUserId()
+      this.listError = error.error;
+      console.log(this.listError)
+      Swal.fire({
+        icon: 'success',
+        iconColor: 'darkorange',
+        title: 'Thanh toán thất bại.Vui lòng kiểm tra lại.',
+        confirmButtonText: 'Xác nhận',
+        confirmButtonColor: 'darkorange'
+
+      });
+    });
+  }
+
 }

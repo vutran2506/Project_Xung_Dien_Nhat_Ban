@@ -20,9 +20,10 @@ export class CartService {
     return  this.httpClient.post<any>('http://localhost:8080/api/user/cart/addCart?email='+email+'&amount='+value+'&idProduct='+id);
   }
 
-  updateToCart(quantityUpdate: number, idCartDetail: number):Observable<any> {
+  updateToCart(quantityUpdate: number, idCartDetail: number,email:string):Observable<any> {
+    debugger
     // @ts-ignore
-    return this.httpClient.put('http://localhost:8080/api/user/cart/updateCart?amount='+quantityUpdate+'&id='+idCartDetail)
+    return this.httpClient.put<any>('http://localhost:8080/api/user/cart/updateCart?amount='+quantityUpdate+'&id='+idCartDetail+'&email='+email)
   }
 
   buyNowCart( userId: number, email: string) {
@@ -31,7 +32,15 @@ export class CartService {
 
   }
 
-  removeCart(idProduct: number):Observable<any> {
-    return this.httpClient.delete<any>('http://localhost:8080/api/user/cart/deleteCart/'+idProduct)
+  removeCart(idProduct: number,email:string):Observable<any> {
+    return this.httpClient.delete<any>('http://localhost:8080/api/user/cart/deleteCart?email='+email+'&idProduct='+idProduct)
   }
+
+payCart():Observable<any>{
+    // @ts-ignore
+  return  this.httpClient.put<any>('http://localhost:8080/api/user/cart/payCart')
+}
+historyOrder():Observable<any>{
+    return  this.httpClient.get('http://localhost:8080/api/user/cart/historyOrder')
+}
 }

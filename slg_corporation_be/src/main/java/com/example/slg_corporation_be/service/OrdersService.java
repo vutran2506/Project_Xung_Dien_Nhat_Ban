@@ -1,6 +1,7 @@
 package com.example.slg_corporation_be.service;
 
 import com.example.slg_corporation_be.model.*;
+import com.example.slg_corporation_be.repository.IAppUserRepository;
 import com.example.slg_corporation_be.repository.IOrderDetailRepository;
 import com.example.slg_corporation_be.repository.IOrdersRepository;
 import com.example.slg_corporation_be.repository.IProductRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrdersService implements IOrdersService {
@@ -18,6 +20,8 @@ public class OrdersService implements IOrdersService {
     private IProductRepository iProductRepository;
     @Autowired
     private IOrderDetailRepository iOrderDetailRepository;
+    @Autowired
+    private IAppUserRepository iAppUserRepository;
 
     @Override
     public void addOrders(long idProduct, String email, int amount) {
@@ -26,7 +30,8 @@ public class OrdersService implements IOrdersService {
         if (order == null){
             Orders orders = new Orders();
             orders.setDayPurchase(String.valueOf(new Date()));
-            orders.setAppUser(new AppUser(email));
+            AppUser appUser = this.iAppUserRepository.findByEmail(email);
+            orders.setAppUser(appUser);
             this.iOrdersRepository.save(orders);
             orderDetail.setAmount(amount);
             orderDetail.setDayPurchase(String.valueOf(new Date()));
@@ -59,13 +64,14 @@ public class OrdersService implements IOrdersService {
         OrderDetail orderDetail = new OrderDetail();
         if (order == null){
             Orders orders = new Orders();
-            orders.setDayPurchase(String.valueOf(new Date()));
-            orders.setAppUser(new AppUser(email));
-            this.iOrdersRepository.save(orders);
-            orderDetail.setAmount(1);
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String dateString = formatter.format(date);
+            orders.setDayPurchase(dateString);
+            AppUser appUser = this.iAppUserRepository.findByEmail(email);
+            orders.setAppUser(appUser);
+            this.iOrdersRepository.save(orders);
+            orderDetail.setAmount(1);
             orderDetail.setDayPurchase(dateString);
             orderDetail.setDelete(false);
             orderDetail.setProduct(new Product(idProduct));
@@ -93,11 +99,21 @@ public class OrdersService implements IOrdersService {
         }
     }
 
-
-
     @Override
-    public Orders findOrderByEmail(String email) {
+    public Orders findOrderById(String email) {
         return this.iOrdersRepository.findOrderByEmail(email);
     }
+
+    @Override
+    public void updateOrder(Orders orders) {
+        this.iOrdersRepository.save(orders);
+    }
+
+    @Override
+    public List<Orders> getHistoryListOrder(String email) {
+
+        return this.iOrdersRepository.getListOrderHistory(email);
+    }
+
 
 }

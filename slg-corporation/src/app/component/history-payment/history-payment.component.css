@@ -76,19 +76,3 @@ body {
   transform: scale(1.05);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
-.text-bodys{
-  border: 2px solid #27509A; /* Màu viền ban đầu */
-  background-color: transparent; /* Màu nền trong suốt */
-  color: #27509A; /* Màu chữ ban đầu */
-  padding: 10px 20px; /* Kích thước button */
-  transition: all 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
-  border-radius: 12px;
-  margin-right: 0.4rem;
-}
-.text-bodys:hover{
-  background-color: #607db8;
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}

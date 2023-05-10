@@ -25,11 +25,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     if (this.tokenStorageService.getToken()) {
       const user = this.tokenStorageService.getUser();
       this.loginService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
       this.username = this.tokenStorageService.getUser().username;
+      Swal.fire({
+        text: 'Bạn đã đăng nhập.',
+        icon: 'warning',
+        iconColor: 'darkorange',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.router.navigateByUrl('');
     }
     this.view();
     this.loginForm = new FormGroup({

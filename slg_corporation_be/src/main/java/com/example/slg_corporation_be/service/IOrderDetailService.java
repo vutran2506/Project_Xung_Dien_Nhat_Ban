@@ -11,7 +11,9 @@ public interface IOrderDetailService {
     List<IOrderDetailDTO> getCartByUser(String email);
 
     List<Product> findProductsByEmail(String email);
-    void updateOrDetail(long id, int amount);
-    OrderDetail findByIdProduct(long id);
-    void remove(long idProduct);
+    void updateOrDetail(long id, int amount,String email);
+    void remove(long idProduct,String email);
+    void payCart(OrderDetail orderDetail);
+    List<OrderDetail> findOrderDetailByEmail(String email);
+    List<OrderDetail>getHistoryOrderDetail(String email,long idOrder);
 }
